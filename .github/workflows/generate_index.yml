@@ -21,12 +21,19 @@ jobs:
       - name: Run index generation script
         run: python generate_index.py
 
-      - name: Commit and push changes
+      - name: Debug Info
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          git status
+          ls -la
+
+      - name: Commit changes
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
           git add index.md
-          git commit -m "Automatically generated index"
-          git push
+          git commit -m "Automatically generated index" || echo "No changes to commit"
+      
+      - name: Push changes
+        run: git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
