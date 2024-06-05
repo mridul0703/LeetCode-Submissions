@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<string> commonChars(vector<string>& words) {
+        vector<int> reference_count(26, INT_MAX);
+        
+        for (const auto& word : words) {
+            vector<int> current_count(26, 0);
+            for (char c : word) {
+                current_count[c - 'a']++;
+            }
+            for (int j = 0; j < 26; j++) {
+                reference_count[j] = min(reference_count[j], current_count[j]);
+            }
+        }
+        
+        vector<string> result;
+        for (int i = 0; i < 26; i++) {
+            while (reference_count[i]-- > 0) {
+                result.push_back(string(1, i + 'a'));
+            }
+        }
+        
+        return result;
+    }
+};
