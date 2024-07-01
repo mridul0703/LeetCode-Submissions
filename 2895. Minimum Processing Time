@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int minProcessingTime(vector<int>& processorTime, vector<int>& tasks) {
+        sort(tasks.begin(), tasks.end());
+        sort(processorTime.begin(), processorTime.end());
+        reverse(processorTime.begin(), processorTime.end());
+        int j = 3;
+        int cmax =0;
+        int max =0;
+        for (int i = 0; i < processorTime.size(); i++) {
+            cmax += (processorTime[i] + tasks[j]);
+            j+=4;
+            if(cmax > max)
+                max = cmax;
+                cmax = 0;
+        }
+        return max;
+    }
+};
