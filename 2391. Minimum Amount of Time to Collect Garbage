@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int garbageCollection(vector<string>& garbage, vector<int>& travel) {
+        int ans = 0;
+        int lastM = 0, lastP = 0, lastG = 0;
+
+        for (int i = 0; i < garbage.size(); i++) {
+            for (char c : garbage[i]) {
+                ans++;
+                if (c == 'M') lastM = i;
+                if (c == 'P') lastP = i;
+                if (c == 'G') lastG = i;
+            }
+        }
+
+        for (int i = 1; i < garbage.size(); i++) {
+            if (i <= lastM) ans += travel[i - 1];
+            if (i <= lastP) ans += travel[i - 1];
+            if (i <= lastG) ans += travel[i - 1];
+        }
+
+        return ans;
+    }
+};
