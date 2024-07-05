@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int maxSatisfaction(vector<int>& satisfaction) {
+        sort(satisfaction.begin(), satisfaction.end(), greater<int>());
+        int total = 0, current_sum = 0;
+        for (int s : satisfaction) {
+            current_sum += s;
+            if (current_sum > 0) {
+                total += current_sum;
+            } else {
+                break;
+            }
+        }
+        return total;
+    }
+};
