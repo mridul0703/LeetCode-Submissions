@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        int n = nums.size();
+        int ans = nums[0];
+        for ( int i = 0 ; i < n ; i++){
+            if( nums[0] > nums[nums.size() - 1]){
+                ans = nums[nums.size() - 1];
+                nums.pop_back();
+            }
+    
+        }
+        return ans;
+    }
+};
