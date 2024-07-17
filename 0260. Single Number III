@@ -1,0 +1,22 @@
+#include <vector>
+#include <unordered_map>
+
+using namespace std;
+
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        unordered_map<int, int> mymap;
+        vector<int> ans;
+        for (int num : nums) {
+            mymap[num]++;
+        }
+        for (auto& pair : mymap) {
+            if (pair.second == 1) {
+                ans.push_back(pair.first);
+            }
+        }
+        
+        return ans;
+    }
+};
