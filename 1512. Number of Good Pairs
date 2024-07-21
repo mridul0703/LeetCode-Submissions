@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int numIdenticalPairs(vector<int>& nums) {
+        int l = 0;
+        int m = 1;
+        int ans = 0;
+        while (l < nums.size() && m < nums.size()) {
+            if (nums[l] == nums[m]) {
+                ans++;
+                cout << l << m << endl;
+            }
+
+            if (m == nums.size() - 1) {
+                l++;
+                m = l;
+            }
+            m++;
+        }
+        return ans;
+    }
+};
