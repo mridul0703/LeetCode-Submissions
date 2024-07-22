@@ -1,0 +1,23 @@
+class Solution {
+public:
+    string finalString(string s) {
+        string curr;
+        for (char c : s) {
+            if (c == 'i') {
+                curr = reverseString(curr);
+            } else {
+                curr += c;
+            }
+        }
+        return curr;
+    }
+
+private:
+    string reverseString(string temp) {
+        string rev;
+        for (int i = temp.size() - 1; i >= 0; --i) {
+            rev += temp[i];
+        }
+        return rev;
+    }
+};
