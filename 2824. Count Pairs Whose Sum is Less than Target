@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int countPairs(vector<int>& nums, int target) {
+        int temp = 0;
+        int i = temp + 1;
+        int count = 0;
+        while (temp < nums.size() && i < nums.size()) {
+            if (nums[temp] + nums[i] < target) {
+                count++;
+            }
+            i++;
+            if( i == nums.size()) {
+                temp++;
+                i = temp+1;
+            }
+        }
+        return count;
+    }
+};
