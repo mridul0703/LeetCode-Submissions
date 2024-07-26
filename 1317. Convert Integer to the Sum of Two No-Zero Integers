@@ -1,0 +1,22 @@
+class Solution {
+public:
+    std::vector<int> getNoZeroIntegers(int n) {
+        for(int i = 1; i <= n - 1; i++) {
+            int j = n - i;
+            if(nozero(i) && nozero(j)) {
+                return {i, j};
+            }
+        }
+        return {};
+    }
+
+private: 
+    bool nozero(int a) {
+        while(a) {
+            if(a % 10 == 0)
+                return false;
+            a /= 10;
+        }
+        return true;
+    }
+};
