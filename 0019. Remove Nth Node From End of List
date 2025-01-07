@@ -1,0 +1,25 @@
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        if( head->next == nullptr)
+        return nullptr;
+        ListNode* f = head;
+        ListNode* d = head;
+        for (int i = 0; i < n; i++) {
+            f = f->next;
+        }
+        if ( f == nullptr) {
+            d = d->next;
+            delete head;
+            return d;
+        }
+        while (f->next != nullptr) {
+            f = f->next;
+            d = d->next;
+        }
+        f = d->next->next;
+        delete d->next;
+        d->next = f;
+        return head;
+    }
+};
