@@ -1,0 +1,24 @@
+class Solution {
+public:
+    long long gridGame(vector<vector<int>>& grid) {
+
+        int n = grid[0].size();
+
+        long long totalTop = 0, totalBottom = 0;
+
+        for (int i = 0; i < n; i++) {
+            totalTop += grid[0][i];
+        }
+
+        long long result = LLONG_MAX;
+
+        for (int i = 0; i < n; i++) {
+
+            totalTop -= grid[0][i];
+            result = min(result, max(totalTop, totalBottom));
+            totalBottom += grid[1][i];
+        }
+
+        return result;
+    }
+};
