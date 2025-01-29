@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int trap(vector<int>& arr) {
+        int n = arr.size();
+        int res = 0;
+        int l = 0;
+        int r = n - 1;
+        int ml = 0;
+        int mr = 0;
+
+        while (l <= r) {
+            if (arr[l] <= arr[r]) {
+                if (arr[l] >= ml) {
+                    ml = arr[l];
+                } else {
+                    res += ml - arr[l];
+                }
+                l++;
+            } else {
+                if (arr[r] >= mr) {
+                    mr = arr[r];
+                } else {
+                    res += mr - arr[r];
+                }
+                r--;
+            }
+        }
+        return res;
+    }
+};
