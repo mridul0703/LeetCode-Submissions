@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int maxSubarraySumCircular(vector<int>& nums) {
+        int tsum = 0;
+        int tmax = INT_MIN;
+        int tmin = INT_MAX;
+        int cmax = 0;
+        int cmin = 0;
+
+        for ( auto i : nums) {
+
+            tsum += i;
+
+            cmax = max(i, cmax + i);
+            tmax = max(tmax, cmax);
+
+            cmin = min(i, cmin + i);
+            tmin = min( cmin, tmin);
+            cout << tsum << cmax << tmax << cmin << tmin<< endl;
+        }
+        return (tmax > 0) ? max(tmax, tsum - tmin) : tmax;
+    }
+};
