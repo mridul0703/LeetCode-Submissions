@@ -1,0 +1,17 @@
+class Solution {
+public:
+    string clearDigits(string s) {
+        string ans;
+
+        for (auto i : s) {
+            if(!isdigit(i)) 
+                ans.push_back(i);
+            
+            else {
+                if(!ans.empty())
+                    ans.pop_back();
+            }
+        }
+        return ans;
+    }   
+};
