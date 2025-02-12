@@ -1,0 +1,39 @@
+class Solution {
+
+private: 
+    int csum(int n) {
+        int sum = 0;
+        while ( n > 0) {
+            sum += n % 10;
+            n /= 10;
+        }
+        return sum;
+    }
+public:
+    int maximumSum(vector<int>& nums) {
+        
+        vector<pair<int,int>> dsump;
+
+        for ( int n : nums) {
+            int dsum = csum(n);
+            dsump.push_back({dsum, n});
+        }
+
+        sort(dsump.begin(), dsump.end());
+
+        int maxp = -1;
+
+        for ( int i = 1 ; i < dsump.size() ; i++) {
+            int currsum = dsump[i].first;
+            int presum = dsump[i-1].first;
+
+            if ( currsum == presum) {
+                int tsum = dsump[i].second + dsump[i-1].second;
+                maxp = max(maxp, tsum);
+            }
+        }
+
+        return maxp;
+
+    }
+};
