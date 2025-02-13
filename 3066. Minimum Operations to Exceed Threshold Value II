@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int minOperations(vector<int>& nums, int k) {
+        
+        int c = 0;
+        priority_queue<long long int, vector<long long int>, greater<long long int>> h;
+
+        for ( auto i : nums) 
+            h.push(i);
+        while ( h.top() < k) {
+            long long int f = h.top();
+            h.pop();
+            long long int s = h.top();
+            h.pop();
+            long long int n = (min(f, s) * 2) + max(f, s);
+            h.push(n);
+            c++;
+        }
+        return c;
+    }
+};
