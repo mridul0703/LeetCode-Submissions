@@ -1,0 +1,46 @@
+class Solution {
+public:
+    void trimSpaces(string& s) {
+        int left = 0, right = s.size() - 1;
+        
+        while (left <= right && s[left] == ' ') left++;
+        
+        while (right >= left && s[right] == ' ') right--;
+
+        int i = 0;
+        while (left <= right) {
+            if (s[left] != ' ' || (i > 0 && s[i - 1] != ' ')) {
+                s[i++] = s[left];
+            }
+            left++;
+        }
+        
+        s.resize(i);
+    }
+
+    void reverse(string& s, int left, int right) {
+        while (left < right) {
+            swap(s[left++], s[right--]);
+        }
+    }
+
+    void reverseEachWord(string& s) {
+        int n = s.size();
+        int start = 0, end = 0;
+        
+        while (start < n) {
+            while (end < n && s[end] != ' ') end++; 
+            reverse(s, start, end - 1); 
+            start = end + 1; 
+            end++;
+        }
+    }
+
+    string reverseWords(string s) {
+        trimSpaces(s);     
+        reverse(s, 0, s.size() - 1); 
+        reverseEachWord(s);
+
+        return s;
+    }
+};
