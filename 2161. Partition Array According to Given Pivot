@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> pivotArray(vector<int>& nums, int pivot) {
+        vector<int> less, greater;
+        int c = 0;
+        for (int num : nums) {
+            if (num < pivot) less.push_back(num);
+            else if (num == pivot) c++;
+            else greater.push_back(num);
+        }
+        while(c){
+            less.push_back(pivot);
+            c--;
+        }
+        less.insert(less.end(), greater.begin(), greater.end());
+
+        return less;
+    }
+};
