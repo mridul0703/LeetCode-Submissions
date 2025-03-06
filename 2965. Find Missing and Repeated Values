@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<int> findMissingAndRepeatedValues(vector<vector<int>>& g) {
+        
+        long long n = g.size();
+        long long N = 1ll * n * n;
+
+        long long Sn = (N * (N + 1)) / 2;
+        long long S2n = (N * (N + 1) * (2 * N + 1) ) / 6;
+
+        long long S = 0;
+        long long S2 = 0;
+
+        for ( int i = 0; i < n ; i++) {
+            for ( int j = 0 ; j < n ; j++) {
+                S += 1LL * g[i][j];
+                S2 += 1LL * g[i][j] * g[i][j];
+            }
+        }
+ 
+
+        long long a_minus_b = S - Sn; 
+        long long a_plus_b = (S2 - S2n) / a_minus_b;
+
+        int a = (a_plus_b + a_minus_b) / 2;
+        int b = (a_plus_b - a_minus_b) / 2;
+        vector<int>ans = {a,b};
+
+        return ans;
+
+
+    }
+};
