@@ -1,0 +1,18 @@
+
+class Solution {
+public:
+    int minimumRecolors(string b, int k) {
+        int l = 0, minw = 0, ans = INT_MAX;
+        for (int r = 0; r < b.size(); r++) {
+            if (b[r] == 'W')
+                minw++;
+            if (r - l + 1 == k) {
+                ans = min(ans, minw);
+                if (b[l] == 'W')
+                    minw--;
+                l++;
+            }
+        }
+        return ans;
+    }
+};
