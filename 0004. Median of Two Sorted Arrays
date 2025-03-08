@@ -1,0 +1,32 @@
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        priority_queue<int>maxh;
+        priority_queue<int, vector<int>, greater<int>>minh;
+
+        for( auto i : nums1) {
+            maxh.push(i);
+            minh.push(maxh.top());
+            maxh.pop();
+
+            if( minh.size() > maxh.size()) {
+                maxh.push(minh.top());
+                minh.pop();
+            }
+        }
+        for( auto i : nums2) {
+            maxh.push(i);
+            minh.push(maxh.top());
+            maxh.pop();
+
+            if( minh.size() > maxh.size()) {
+                maxh.push(minh.top());
+                minh.pop();
+            }
+        }
+        if( maxh.size() == minh.size()) return (minh.top() + maxh.top()) / 2.0;
+        else {
+            return maxh.top();
+        }
+    }
+};
