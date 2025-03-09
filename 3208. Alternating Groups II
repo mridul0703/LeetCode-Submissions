@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int numberOfAlternatingGroups(vector<int>& c, int k) {
+        
+        int n = c.size();
+        int count = 0;
+        int vl = 1;
+
+        for ( int i = 1 ; i < n + k -1 ; i++) {
+            if( c[(i % n)] != c[(i - 1) % n]) {
+                vl++;
+                if(vl >= k) count++;
+            } else vl = 1;
+        } return count;
+    }
+};
