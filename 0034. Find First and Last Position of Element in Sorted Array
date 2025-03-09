@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> ans = {-1, -1};
+        if( !nums.size()) return ans;
+        int l = 0, r = nums.size() -1, mid = 0;
+
+        while ( l <= r) {
+            mid = (l + r) / 2;
+            if( nums[mid] >= target) r = mid - 1;
+            else l= mid + 1;
+        }
+        if( l < nums.size() && nums[l] == target) ans[0] = l;
+
+        l = 0; r = nums.size() - 1;
+        while ( l <= r ) {
+            mid = (l + r)/ 2;
+            if ( nums[mid] <= target) l = mid + 1;
+            else r = mid - 1;
+        }
+
+        if ( r >= 0 && nums[r] == target) ans[1] = r;
+        return ans;
+    }
+};
