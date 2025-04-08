@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int minimumOperations(vector<int>& nums) {
+        unordered_set<int> seen;
+        int pos = -1;
+        for (int i = nums.size() - 1; i >= 0; --i) {
+            if (seen.count(nums[i])) {
+                pos = i;
+                break;
+            }
+            seen.insert(nums[i]);
+        }
+        if (pos == -1) return 0;
+        return (pos + 1 + 2) / 3;
+    }
+};
